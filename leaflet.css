@@ -47,6 +47,7 @@
   text-align: center;
   /*margin-right: 210px;*/
   z-index: 2;
+  cursor: crosshair;
 }
 
 .mainmenu {
@@ -252,8 +253,9 @@
 	cursor: pointer;
 	}
 .leaflet-container {
-	cursor: -webkit-grab;
-	cursor:    -moz-grab;
+	/*cursor: -webkit-grab;
+	cursor:    -moz-grab;*/
+  cursor: default;
 	}
 .leaflet-popup-pane,
 .leaflet-control {

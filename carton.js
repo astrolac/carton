@@ -174,7 +174,7 @@ function init() {
     layers: [/*mapboxTerrainLayer, */osmLayer]
   });
 
-  map.on('click', onMapMouseClick);
+  map.on('mousemove', onMapMouseClick); /*click*/
 
   /*L.control.layers(baseMaps, overlayMaps).addTo(map);*/
 
@@ -290,5 +290,7 @@ function putSizeToObject(objPointer, objSize) {
 
 /* Функция отработки клика мыши на карте */
 function onMapMouseClick(e) {
-  mainmenuDivPointer.innerHTML = "Latitude: " + e.latlng.lat + "<br>" + "Longitude: " + e.latlng.lng;
+  /*mainmenuDivPointer.innerHTML = "Latitude: " + e.latlng.lat + "<br>" + "Longitude: " + e.latlng.lng;*/
+  document.getElementById("mainmenuLat").innerHTML = e.latlng.lat;
+  document.getElementById("mainmenuLon").innerHTML = e.latlng.lng;
 }
