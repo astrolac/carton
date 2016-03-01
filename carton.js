@@ -8,7 +8,7 @@ var mapDivPointer, mainblockDivPointer, mainmenuDivPointer, headerDivPointer, fo
 var currentZoom = 15;
 
 /* ------------ Это блок инструментов имитации (может стать постоянным) ------------ */
-var moveTimeout = window.setInterval(placeTrackingMarks, 300);
+/*var moveTimeout = window.setInterval(placeTrackingMarks, 300);*/
 var trackStep=0;
 var trackImitation=[
   [59.86017095108688 , 30.20659974189727  ],
@@ -116,12 +116,24 @@ var mapboxTerrainLayer, osmLayer;
 
 var baseMaps, overlayMaps;
 
+/* Создадим объект для хранения статусов "включения/выключения" инструментов */
+var toolsStates={
+  rule: false,
+  draw: false
+};
+
+var popup = L.popup();
+
 /* Функция с основным кодом */
 function baseCode() {
 
   /*for(var eachtrack in trackImitation) {
     console.log(trackImitation[eachtrack]);
   }*/
+
+  /*var ruleTdPointer = document.getElementById("rule");
+  ruleTdPointer.innerHTML = ruleTdPointer.getAttribute('class');
+  ruleTdPointer.setAttribute('class','toolsON');*/
 }
 
 /* Функция инициализации интерфейса */
@@ -174,7 +186,14 @@ function init() {
     layers: [/*mapboxTerrainLayer, */osmLayer]
   });
 
-  map.on('mousemove', onMapMouseClick); /*click*/
+  map.on('mousemove', onMapMouseMove); /*click*/
+  map.on('click', onMapMouseClick);
+
+  document.getElementById("rule").addEventListener('click', toolbarClick('rule'));
+  document.getElementById("draw").addEventListener('click', toolbarClick('draw'));
+
+  console.log(toolsStates['rule']);
+  console.log(toolsStates['draw']);
 
   /*L.control.layers(baseMaps, overlayMaps).addTo(map);*/
 
@@ -288,9 +307,38 @@ function putSizeToObject(objPointer, objSize) {
   objPointer.style.height = objSize[1].toString() + "px";
 }
 
-/* Функция отработки клика мыши на карте */
-function onMapMouseClick(e) {
+/* Функция отработки движения мыши над картой */
+function onMapMouseMove(e) {
   /*mainmenuDivPointer.innerHTML = "Latitude: " + e.latlng.lat + "<br>" + "Longitude: " + e.latlng.lng;*/
   document.getElementById("mainmenuLat").innerHTML = e.latlng.lat;
   document.getElementById("mainmenuLon").innerHTML = e.latlng.lng;
+}
+
+/* Функция отработки клика по карте */
+function onMapMouseClick(e) {
+  popup
+      .setLatLng(e.latlng)
+      .setContent(e.latlng.toString())
+      .openOn(map);
+}
+
+/* Функция отработки клика на элементе тулбара */
+function toolbarClick(toolsName) {
+  switch(toolsName) {
+    case 'rule':    var elementPointer = document.getElementById("rule");
+                    if(!toolsStates['rule']) {
+                      elementPointer.setAttribute('class','toolsON');
+                    } else {
+                      elementPointer.setAttribute('class','tools');
+                    }
+                    break;
+
+    case 'draw':    var elementPointer = document.getElementById("draw");
+                    if(!toolsStates['draw']) {
+                      elementPointer.setAttribute('class','toolsON');
+                    } else {
+                      elementPointer.setAttribute('class','tools');
+                    }
+                    break;
+  }
 }
