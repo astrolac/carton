@@ -1,6 +1,6 @@
 "use strict";
 
-/* Массив, который будет содержать ширину, высоту домента браузера */
+/* Массив, который будет содержать ширину, высоту документа браузера */
 var pureDocSize=[];
 /* Переменные для хранения ссылок на основные элементы интерфейса */
 var mapDivPointer, mainblockDivPointer, mainmenuDivPointer, headerDivPointer, footerDivPointer;
@@ -189,11 +189,8 @@ function init() {
   map.on('mousemove', onMapMouseMove); /*click*/
   map.on('click', onMapMouseClick);
 
-  document.getElementById("rule").addEventListener('click', toolbarClick('rule'));
-  document.getElementById("draw").addEventListener('click', toolbarClick('draw'));
-
-  console.log(toolsStates['rule']);
-  console.log(toolsStates['draw']);
+  document.getElementById("rule").addEventListener('click', toolbarClick);
+  document.getElementById("draw").addEventListener('click', toolbarClick);
 
   /*L.control.layers(baseMaps, overlayMaps).addTo(map);*/
 
@@ -271,7 +268,7 @@ function moveMapCenterToPosition() {
 function computeMapDivSize() {
   return [
     mainblockDivPointer.clientWidth /*- mainmenuDivPointer.clientWidth*/,
-    pureDocSize[1] - headerDivPointer.clientHeight - footerDivPointer.clientHeight
+    pureDocSize[1] - headerDivPointer.clientHeight/* - footerDivPointer.clientHeight*/
   ];
 }
 
@@ -323,21 +320,32 @@ function onMapMouseClick(e) {
 }
 
 /* Функция отработки клика на элементе тулбара */
-function toolbarClick(toolsName) {
+function toolbarClick(event) {
+
+  console.log(event.target);
+
+  if(event.target.hasAttribute('id')) {
+    var toolsName = event.target.getAttribute('id')
+  }
+
   switch(toolsName) {
     case 'rule':    var elementPointer = document.getElementById("rule");
-                    if(!toolsStates['rule']) {
+                    if(!toolsStates[toolsName]) {
                       elementPointer.setAttribute('class','toolsON');
+                      toolsStates[toolsName] = true;
                     } else {
                       elementPointer.setAttribute('class','tools');
+                      toolsStates[toolsName] = false;
                     }
                     break;
 
     case 'draw':    var elementPointer = document.getElementById("draw");
-                    if(!toolsStates['draw']) {
+                    if(!toolsStates[toolsName]) {
                       elementPointer.setAttribute('class','toolsON');
+                      toolsStates[toolsName] = true;
                     } else {
                       elementPointer.setAttribute('class','tools');
+                      toolsStates[toolsName] = false;
                     }
                     break;
   }

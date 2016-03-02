@@ -32,7 +32,7 @@
   font-family: Helvetica, Verdana;
   font-weight: bold;
   font-size: 8pt;
-  border-bottom: 1px dashed #000000;
+  /*border-bottom: 1px dashed #000000;*/
   padding: 5px 0px;
   background: white;
   width: 100%;
@@ -59,13 +59,13 @@
   /*border: 1px dashed #000000;*/
   background: white;
   width: 100%;
-  padding: 5px 0px;
+  padding: 0px 0px;
   position: relative;
   z-index: 1;
 }
 
 .map {
-  border: 1px solid black;
+  border: 0px solid black;
   vertical-align: middle;
   text-align: center;
   /*margin-right: 210px;*/
