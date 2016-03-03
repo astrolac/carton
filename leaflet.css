@@ -1,23 +1,51 @@
 .tools {
-  background-color: #ffffff;
   font-family: Helvetica, Verdana;
-  font-size: 8pt;
+  font-size: 6pt;
   color: #000000;
   cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+
+  border: 1px dashed #000000;
+  background: white;
+  background-clip: border-box;
+
+  border-radius: 25px;
+
+  width: 50px;
+  height: 50px;
 }
 .tools:hover {
-  background-color: #000000;
   font-family: Helvetica, Verdana;
-  font-size: 8pt;
+  font-size: 6pt;
   color: #ffffff;
   cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+
+  border: 1px dashed #ffffff;
+  background: black;
+  background-clip: border-box;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 .toolsON {
-  background-color: #000000;
   font-family: Helvetica, Verdana;
-  font-size: 8pt;
+  font-size: 6pt;
   color: #ffffff;
   cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+
+  border: 1px dashed #ffffff;
+  background: black;
+  background-clip: border-box;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 
 
@@ -76,7 +104,7 @@
 .mainmenu {
   font-family: Helvetica, Verdana;
   font-size: 8pt;
-  border/*-right*/: 1px dashed #000000;
+  border/*-right*/: 1px solid #000000;
   padding: 5px 0px;
   background: white;
   opacity: 0.9;
