@@ -267,8 +267,9 @@ function moveMapCenterToPosition() {
 /* Вычисление размера блока в котором отображается карта */
 function computeMapDivSize() {
   return [
-    mainblockDivPointer.clientWidth /*- mainmenuDivPointer.clientWidth*/,
-    pureDocSize[1] - headerDivPointer.clientHeight/* - footerDivPointer.clientHeight*/
+    //mainblockDivPointer.clientWidth /*- mainmenuDivPointer.clientWidth*/,
+    //pureDocSize[1] - headerDivPointer.clientHeight/* - footerDivPointer.clientHeight*/
+    mapDivPointer.scrollWidth, mapDivPointer.scrollHeight
   ];
 }
 
